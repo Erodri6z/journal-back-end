@@ -4,7 +4,7 @@ const noteSchema = new mongoose.Schema({
   title: {type: String},
   text: {type: String},
   mood: {type: String},
-  author:{types: String.Types.ObjectId, ref: 'Profile'},
+  author :{type: mongoose.Schema.Types.ObjectId, ref: 'Profile' }
 }, {
   timestamps: true,
 })
