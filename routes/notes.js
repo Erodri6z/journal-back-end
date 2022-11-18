@@ -6,12 +6,12 @@ const router = Router()
 
 /*---------- Public Routes ----------*/
 router.get('/', notesCtrl.index)
+router.get('/:id', notesCtrl.show)
 
 
 
 /*---------- Protected Routes ----------*/
-router.use(decodeUserFromToken)
 router.post('/',checkAuth, notesCtrl.create)
-router.get('journal/:id', checkAuth, notesCtrl.show)
+router.use(decodeUserFromToken)
 
 export { router }

@@ -26,9 +26,18 @@ function create(req, res){
   })
 }
 
-
+function show(req, res){
+  Note.findById(req.params.id)
+  .then(note => 
+    res.json(note))
+  .catch(err => {
+    console.log(err)
+      res.status(500).json(err)
+  })
+}
 
 export {
   index,
-  create
+  create,
+  show
 }
