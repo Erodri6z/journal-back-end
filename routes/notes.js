@@ -12,5 +12,6 @@ router.get('/', notesCtrl.index)
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
 router.post('/',checkAuth, notesCtrl.create)
+router.get('journal/:id', checkAuth, notesCtrl.show)
 
 export { router }
