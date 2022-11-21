@@ -46,9 +46,21 @@ function deleteNote(req, res) {
   })
 }
 
+function update(req, res) {
+  Note.findByIdAndUpdate(req.params.id, req.body, {new:true})
+  .then(updatedNote => {
+    res.json(updatedNote)
+  })
+  .catch(err => {
+    console.log(err)
+      res.status(500).json(err)
+  })
+}
+
 export {
   index,
   create,
   show,
-  deleteNote as delete
+  deleteNote as delete,
+  update
 }
