@@ -13,10 +13,10 @@ function index(req, res) {
 function create(req, res){
   req.body.author = req.user.profile
   Note.create(req.body)
-  .then(n => {
+  .then(note => {
     Note.findById(note._id)
     .populate('author')
-    .then(populatedNote=>{
+    .then(populatedNote => {
       res.json(populatedNote)
     })
   })

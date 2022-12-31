@@ -10,10 +10,10 @@ router.get('/', notesCtrl.index)
 
 
 /*---------- Protected Routes ----------*/
-router.post('/',checkAuth, notesCtrl.create)
-router.get('/:id',checkAuth, notesCtrl.show)
-router.put('/:id',checkAuth, notesCtrl.update)
-router.delete('/:id',checkAuth, notesCtrl.delete)
 router.use(decodeUserFromToken)
+router.post('/', checkAuth, notesCtrl.create)
+router.get('/:id', checkAuth, notesCtrl.show)
+router.put('/:id', checkAuth, notesCtrl.update)
+router.delete('/:id', checkAuth, notesCtrl.delete)
 
 export { router }
