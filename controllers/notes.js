@@ -37,9 +37,17 @@ function show(req, res){
 }
 
 function deleteNote(req, res) {
-  Note.findByIdAndDelete(req.params.id)
-  .then(deletedNote => 
-    res.json(deletedNote))
+  Note.findById(req.params.id)
+  .then(note => {
+    if(note.author._id.equals(req.user.profile)){
+      Note.findByIdAndDelete(req.params.id)
+      .then(deletedNote => 
+        res.json(deletedNote)
+      )
+    }else{
+      res.status(401).json({err : "Not Your Post Not Your Problem"})
+    }
+  })
   .catch(err => {
     console.log(err)
       res.status(500).json(err)
